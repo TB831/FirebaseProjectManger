@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/rootReducer'; // rootReducers which combines reducers
+import thunk from 'redux-thunk' // Middleware 
 
 
-
-const store = createStore(rootReducer); // Our single source of truth
+const store = createStore(rootReducer, applyMiddleware(thunk)); // Our single source of truth
 
 ReactDOM.render(
   <Provider store={store}>
