@@ -38,7 +38,7 @@ class SignUp extends Component {
             <input onChange={(e) => this.setState({ [e.target.id]: e.target.value })} type="text" id="lastName" />
           </div>
           <div className="input-field">
-            <button className="btn green lighten-1 z-depth-0">Login</button>
+            <button className="btn green lighten-1 z-depth-0">Create</button>
           </div>
         </form>
       </div>
