@@ -3,13 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/rootReducer'; // rootReducers which combines reducers
 import thunk from 'redux-thunk' // Middleware 
+import { reduxFirestore, getFirestore } from 'redux-firestore';
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+import fbConfig from './config/fbConfig';
 
 
-const store = createStore(rootReducer, applyMiddleware(thunk)); // Our single source of truth, Middleware Thunk added
+const store = createStore(rootReducer, 
+  compose(
+    applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+    reduxFirestore(fbConfig), // reduxFirestore, reactReduxFirebase act as store enhancers
+    reactReduxFirebase(fbConfig)
+  )
+); // Our single source of truth, Middleware Thunk added. Added Firebase/Firestore to our middleware
 
 ReactDOM.render(
   <Provider store={store}>
