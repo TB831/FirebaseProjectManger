@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import NavBar from './components/NavBar';
-import Dashboard from './containers/Dashboard';
-import ProjectDetails from './components/ProjectDetails';
-import SignIn from './containers/SignIn';
-import SignUp from './containers/SignUp';
-import CreateProject from './containers/CreateProject';
+import NavBar from '../components/NavBar';
+import Dashboard from './Dashboard';
+import ProjectDetails from '../components/ProjectDetails';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
+import CreateProject from './CreateProject';
 
 class App extends Component {
   render() {

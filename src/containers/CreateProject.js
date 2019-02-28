@@ -11,7 +11,7 @@ class CreateProject extends Component {
 
   onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   render() { 
