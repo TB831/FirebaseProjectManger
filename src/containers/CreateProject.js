@@ -13,7 +13,7 @@ class CreateProject extends Component {
 
   onSubmitHandler = (e) => {
     e.preventDefault();
-    this.props.createProject(this.state)
+    this.props.createProject(this.state);
   }
 
   render() { 
@@ -44,4 +44,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
  
-export default connect(mapDispatchToProps)(CreateProject);
+export default connect(null, mapDispatchToProps)(CreateProject);
