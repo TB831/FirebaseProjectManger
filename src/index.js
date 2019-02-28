@@ -9,7 +9,7 @@ import rootReducer from './reducers/rootReducer'; // rootReducers which combines
 import thunk from 'redux-thunk' // Middleware 
 
 
-const store = createStore(rootReducer, applyMiddleware(thunk)); // Our single source of truth
+const store = createStore(rootReducer, applyMiddleware(thunk)); // Our single source of truth, Middleware Thunk added
 
 ReactDOM.render(
   <Provider store={store}>
