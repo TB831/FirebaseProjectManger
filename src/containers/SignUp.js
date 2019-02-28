@@ -13,12 +13,7 @@ class SignUp extends Component {
 
   onSubmitHandler = (e) => {
     e.preventDefault();
-    // console.log(
-    //   this.state.email, 
-    //   this.state.password, 
-    //   this.state.firstName, 
-    //   this.state.lastName
-    //   );
+    // console.log(this.state);
   }
 
   render() { 

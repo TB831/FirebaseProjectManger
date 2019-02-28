@@ -11,7 +11,7 @@ class SignIn extends Component {
 
   onSubmitHandler = (e) => {
     e.preventDefault();
-    // console.log(this.state.email, this.state.password);
+    // console.log(this.state);
   }
 
   render() { 
