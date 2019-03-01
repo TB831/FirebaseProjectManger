@@ -14,7 +14,7 @@ import fbConfig from './config/fbConfig';
 
 const store = createStore(rootReducer, 
   compose(
-    applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+    applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),  // withExtraArgument allows use to use extra middleware. eg. getFirebase/getFirestore. They are getting passed as an extra argument in projectActions.js. 
     reduxFirestore(fbConfig), // reduxFirestore, reactReduxFirebase act as store enhancers
     reactReduxFirebase(fbConfig)
   )
