@@ -37,7 +37,7 @@ const mapStateToProps = (state) => {
 export default compose( // Use compose for multiple higher order components
   connect(mapStateToProps),
   firestoreConnect([    // Takes in array as parameter
-    { collection: 'projects'},
-    { collection: 'notifications', limit: 3}  // Limit parameter responsible for retrieving 3 most recent documents in the collection
+    { collection: 'projects', orderBy: ['createdAt', 'desc']},  // Parameters for how we retrieve our data from the collections
+    { collection: 'notifications', limit: 3, orderBy: ['time', 'desc']}  // Limit parameter responsible for retrieving 3 most recent documents in the collection
   ])
 )(Dashboard);
