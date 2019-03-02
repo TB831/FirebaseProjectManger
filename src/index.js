@@ -16,15 +16,18 @@ const store = createStore(rootReducer,
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),  // withExtraArgument allows use to use extra middleware. eg. getFirebase/getFirestore. They are getting passed as an extra argument in projectActions.js. 
     reduxFirestore(fbConfig), // reduxFirestore, reactReduxFirebase act as store enhancers
-    reactReduxFirebase(fbConfig)
+    reactReduxFirebase(fbConfig, {attachAuthIsReady: true})
   )
 ); // Our single source of truth, Middleware Thunk added. Added Firebase/Firestore to our middleware
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
-, document.getElementById('root'));
+store.firebaseAuthIsReady.then(() => {  // Allows application to not render to the DOM until firebase is ready
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  , document.getElementById('root'));
+})
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
