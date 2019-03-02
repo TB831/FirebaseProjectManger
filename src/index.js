@@ -16,7 +16,7 @@ const store = createStore(rootReducer,
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),  // withExtraArgument allows use to use extra middleware. eg. getFirebase/getFirestore. They are getting passed as an extra argument in projectActions.js. 
     reduxFirestore(fbConfig), // reduxFirestore, reactReduxFirebase act as store enhancers
-    reactReduxFirebase(fbConfig, {attachAuthIsReady: true})
+    reactReduxFirebase(fbConfig, {useFirestoreForProfile: true, userProfile: 'users', attachAuthIsReady: true}) // attachAuthIsReady attaches auth is ready promise to store.
   )
 ); // Our single source of truth, Middleware Thunk added. Added Firebase/Firestore to our middleware
 
