@@ -9,7 +9,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
  response.send("Hello from Firebase!");
 });
 
-const createNotification = (notification) => {  // function responsible for creating a new document in the notifications collection
+const createNotification = (notification) => {  // helper function responsible for creating a new document in the notifications collection
   return admin.firestore()
     .collection('notifications')
     .add(notification)
@@ -28,4 +28,20 @@ exports.projectCreated = functions.firestore  // function responsible for creati
     }
 
     return createNotification(notification);
-})
+});
+
+exports.userJoined = functions.auth // function responsible for creating new user created in notifications
+  .user()
+  .onCreate(user => { // Refernces the document for when a new user is created in users collection
+    return admin.firestore().collection('users')
+      .doc(user.uid).get()
+      .then(doc => {
+        const newUser = doc.data() // Data retrieved from document
+        const notification = {
+          content: 'Joined the party',
+          user: `${newUser.firstName} ${newUser.lastName}`,
+          time: admin.firestore.FieldValue.serverTimestamp()
+        }
+        return createNotification(notification);
+      })
+});
